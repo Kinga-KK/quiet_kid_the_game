@@ -161,7 +161,7 @@ namespace QuietKid_TheGame
                     case "b":
                         Body(); answerInvalid = false;
                         break;
-                    case "c":
+                    case "p":
                         CodeSkills(); answerInvalid = false;
                         break;
                     case "r":
