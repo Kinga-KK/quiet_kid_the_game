@@ -103,18 +103,25 @@ namespace QuietKid_TheGame
         {
             Console.WriteLine($"\n> Day {day} <\n");
             Console.WriteLine("> " + days[r.Next(0,days.Count())] + " <");
-            BasicChoices();
+            if (r.Next(0,10) == 7)
+            {
+                LifeChangingChoices();
+            }
+            else
+            {
+                BasicChoices();
+            }
             CheckEnd();
         }
         public void BasicChoices()
         {
-            Console.WriteLine("\n>>> Choose or else <<<");
+            Console.WriteLine("\n>>> What will you do tonight? <<<");
             Console.WriteLine("T - Train" +
                 "\nC - Code" +
                 "\nS - Seethe in repressed rage");
             do
             {
-                Console.Write("\nWhat will you do? ");
+                Console.Write("\nMake your choice: ");
                 switch (Console.ReadLine().ToLower())
                 {
                     case "t":
@@ -127,7 +134,7 @@ namespace QuietKid_TheGame
                     case "seethe":
                     case "seethe in repressed rage": emil.Seethe(); answerInvalid = false;
                         break;
-                    default: Console.WriteLine("Invalid answer!"); answerInvalid = true;
+                    default: Console.WriteLine("There's no choice like that."); answerInvalid = true;
                         break;
                 }
             } while (answerInvalid);
@@ -136,36 +143,77 @@ namespace QuietKid_TheGame
         {
             Console.WriteLine("\n! Today you decide to do something different. Something life-changing. !");
             Console.WriteLine("\n>>> What shall it be? <<<");
-            Console.WriteLine("T - Train" +
-                "\nC - Code" +
-                "\nS - Seethe in repressed rage");
+            Console.WriteLine("B - Do something with your body" +
+                "\nC - Do something with your coding skills" +
+                "\nR - Do something with your rage" +
+                "\nX - Do something ordinary instead");
             do
             {
-                Console.Write("\nWhat will you do? ");
+                Console.Write("\nMake your choice: ");
                 switch (Console.ReadLine().ToLower())
                 {
-                    case "t":
-                    case "train":
-                        emil.Train(); answerInvalid = false;
+                    case "b":
+                    case "body":
+                        Body(); answerInvalid = false;
                         break;
                     case "c":
                     case "code":
-                        emil.Code(); answerInvalid = false;
+                    case "coding skills":
+                        CodeSkills(); answerInvalid = false;
                         break;
-                    case "s":
-                    case "seethe":
-                    case "seethe in repressed rage":
-                        emil.Seethe(); answerInvalid = false;
+                    case "r":
+                    case "rage":
+                        Rage(); answerInvalid = false;
+                        break;
+                    case "x":
+                    case "go back":
+                    case "ordinary":
+                        BasicChoices(); answerInvalid = false;
                         break;
                     default:
-                        Console.WriteLine("Invalid answer!"); answerInvalid = true;
+                        Console.WriteLine("There's no choice like that."); answerInvalid = true;
+                        break;
+                }
+            } while (answerInvalid);
+        }
+        public void Body()
+        {
+            do
+            {
+                switch (Console.ReadLine().ToLower())
+                {
+                    default: LifeChangingChoices(); answerInvalid = false;
+                        break;
+                }
+            } while (answerInvalid);
+        }
+        public void CodeSkills()
+        {
+            do
+            {
+                switch (Console.ReadLine().ToLower())
+                {
+                    default:
+                        LifeChangingChoices(); answerInvalid = false;
+                        break;
+                }
+            } while (answerInvalid);
+        }
+        public void Rage()
+        {
+            do
+            {
+                switch (Console.ReadLine().ToLower())
+                {
+                    default:
+                        LifeChangingChoices(); answerInvalid = false;
                         break;
                 }
             } while (answerInvalid);
         }
         public void CheckEnd()
         {
-            if (day == days.Count())
+            if (day == 31)
             {
                 Ending(0);
             }
@@ -177,14 +225,41 @@ namespace QuietKid_TheGame
         public void Ending(int whichending)
         {
             Console.WriteLine("\n\t!!!Congratulations, you've reached an ending!!!\n" +
-                    $"\t---\n{"\t" + endings[whichending]}\n\t---" +
-                    $"\n\tFinal stats:\n" +
+                    $"\t---\n{"\t" + endings[whichending]}\n\t---");
+            Console.WriteLine($"\tFinal stats:\n" +
                     $"\n\tPhysique: {emil.Physique}" +
                     $"\n\tCoding: {emil.Coding}" +
-                    $"\n\tBloodlust: {emil.BloodLust}\n" +
-                    "\nWould you like to play another time?");
+                    $"\n\tBloodlust: {emil.BloodLust}\n");
+            EasterEgg();
+            Console.WriteLine("\nWould you like to play another time?"); ;
             Reset();
             ToPlayOrNotToPlay();
+        }
+        public void EasterEgg()
+        {
+            if (emil.Physique == 5 && emil.Coding == 5 && emil.BloodLust == 5)
+            {
+                Console.WriteLine("\nYou really know how to balance your life out!" +
+                    "\n\tSome physical exercise, some mental, and some healthy rage..." +
+                    "\n\tYou've found the 'Jack of All Trades' easter egg!\n");
+            }
+            if (emil.Physique == 8)
+            {
+                Console.WriteLine("\nYou really love working out. It fills you with bliss when you can experience the fruits of your own labor." +
+                    "\n\tAnd showing off your muscles.\n" +
+                    "\n\tYou've found the 'Buff Guy' easter egg!\n");
+            }
+            if (emil.Coding == 8)
+            {
+                Console.WriteLine("\n\tYou love coding. You much rather click-clack on your keyboard than anything else.\n" +
+                    "\n\tYou've found the 'Bit Lover' easter egg!\n");
+            }
+            if (emil.BloodLust == 8)
+            {
+                Console.WriteLine("\n\tYou seethe with rage. This world isn't right. Something needs to be done..." +
+                    "\n\tOr at least there needs to be a punchbag in your arm's reach. At all times.\n" +
+                    "\n\tYou've found the 'Angry Boy' easter egg!\n");
+            }
         }
         public static void Goodbye()
         {
