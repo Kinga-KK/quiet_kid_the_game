@@ -24,9 +24,9 @@ namespace QuietKid_TheGame
             PTP += 1;
             if (PTP == Physique)
             {
-                Console.WriteLine("Physique Level Up! ({0})", Physique);
                 Physique += 1;
                 PTP = 0;
+                Console.WriteLine("\nPhysique Level Up! ({0})", Physique);
             }
         }
         public void Code()
@@ -34,9 +34,9 @@ namespace QuietKid_TheGame
             CTP += 1;
             if (CTP == Coding)
             {
-                Console.WriteLine("Coding Level Up! ({0})", Coding);
                 Coding += 1;
                 CTP = 0;
+                Console.WriteLine("\nCoding Level Up! ({0})", Coding);
             }
         }
         public void Seethe()
@@ -44,9 +44,9 @@ namespace QuietKid_TheGame
             BTP += 1;
             if (BTP == BloodLust)
             {
-                Console.WriteLine("Bloodlust Level Up! ({0})", BloodLust);
                 BloodLust += 1;
                 BTP = 0;
+                Console.WriteLine("\nBloodlust Level Up! ({0})", BloodLust);
             }
         }
     }

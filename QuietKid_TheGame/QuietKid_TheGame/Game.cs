@@ -53,7 +53,7 @@ namespace QuietKid_TheGame
             {
                 Console.Write("Play game?(y/n): ");
                 string play = Console.ReadLine();
-                switch (play)
+                switch (play.ToLower())
                 {
                     case "y":
                     case "yes":
@@ -73,11 +73,34 @@ namespace QuietKid_TheGame
         {
             Console.WriteLine($"\n> Day {day} <\n");
             Console.WriteLine("> " + days[day - 1] + " <");
+            BasicChoices();
             CheckEnd();
         }
-        public void Choices()
+        public void BasicChoices()
         {
-
+            Console.WriteLine("\n>>> Choose or else <<<");
+            Console.WriteLine("T - Train" +
+                "\nC - Code" +
+                "\nS - Seethe in repressed rage");
+            do
+            {
+                Console.Write("\nWhat will you do? ");
+                switch (Console.ReadLine().ToLower())
+                {
+                    case "t":
+                    case "train": emil.Train(); answerInvalid = false;
+                        break;
+                    case "c":
+                    case "code": emil.Code(); answerInvalid = false;
+                        break;
+                    case "s":
+                    case "seethe":
+                    case "seethe in repressed rage": emil.Seethe(); answerInvalid = false;
+                        break;
+                    default: Console.WriteLine("Invalid answer!"); answerInvalid = true;
+                        break;
+                }
+            } while (answerInvalid);
         }
         public void CheckEnd()
         {
