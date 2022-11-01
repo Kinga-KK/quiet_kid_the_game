@@ -39,7 +39,7 @@ namespace QuietKid_TheGame
         {
             endings = new string[]
             {
-                "\nThat was it. Yet another month. You guess not much changes during a month for Emil.\n"
+                "That was it. Yet another month. You guess not much changes during a month for Emil."
             };
         }
         public static void Greetings()
@@ -71,24 +71,36 @@ namespace QuietKid_TheGame
         }
         public void NewDay()
         {
-            Console.WriteLine($"\nDay {day}\n");
-            Console.WriteLine(days[day - 1]);
+            Console.WriteLine($"\n> Day {day} <\n");
+            Console.WriteLine("> " + days[day - 1] + " <");
             CheckEnd();
+        }
+        public void Choices()
+        {
+
         }
         public void CheckEnd()
         {
             if (day == days.Count())
             {
-                Console.WriteLine("\nCongratulations, you've reached an ending!\n" +
-                    $"---{endings[0]}---" +
-                    "\nWould you like to play another time?");
-                Reset();
-                ToPlayOrNotToPlay();
+                Ending(0);
             }
             else
             {
                 ++day;
             }
+        }
+        public void Ending(int whichending)
+        {
+            Console.WriteLine("\n\t!!!Congratulations, you've reached an ending!!!\n" +
+                    $"\t---\n{"\t" + endings[whichending]}\n\t---" +
+                    $"\n\tFinal stats:\n" +
+                    $"\n\tPhysique: {emil.Physique}" +
+                    $"\n\tCoding: {emil.Coding}" +
+                    $"\n\tBloodlust: {emil.BloodLust}\n" +
+                    "\nWould you like to play another time?");
+            Reset();
+            ToPlayOrNotToPlay();
         }
         public static void Goodbye()
         {
