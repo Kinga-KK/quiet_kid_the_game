@@ -13,12 +13,34 @@ namespace QuietKid_TheGame
         public bool playing { get; private set; }
         private Emil emil { get; set; }
         private int day { get; set; }
+        private string[] days { get; set; }
+        private string[] endings { get; set; }
         public Game()
+        {
+            Reset();
+        }
+        public void Reset()
         {
             answerInvalid = false;
             playing = false;
             emil = new Emil();
             day = 1;
+            setDays();
+            setEndings();
+        }
+        private void setDays()
+        {
+            days = new string[] 
+            {
+                "Your first day of school. It passes without much action since you don't have any friends."
+            };
+        }
+        private void setEndings()
+        {
+            endings = new string[]
+            {
+                "\nThat was it. Yet another month. You guess not much changes during a month for Emil.\n"
+            };
         }
         public static void Greetings()
         {
@@ -49,8 +71,24 @@ namespace QuietKid_TheGame
         }
         public void NewDay()
         {
-            Console.WriteLine("game will be here");
-            playing = false;
+            Console.WriteLine($"\nDay {day}\n");
+            Console.WriteLine(days[day - 1]);
+            CheckEnd();
+        }
+        public void CheckEnd()
+        {
+            if (day == days.Count())
+            {
+                Console.WriteLine("\nCongratulations, you've reached an ending!\n" +
+                    $"---{endings[0]}---" +
+                    "\nWould you like to play another time?");
+                Reset();
+                ToPlayOrNotToPlay();
+            }
+            else
+            {
+                ++day;
+            }
         }
         public static void Goodbye()
         {
