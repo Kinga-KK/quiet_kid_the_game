@@ -20,7 +20,7 @@ namespace QuietKid_TheGame
         {
             Reset();
         }
-        public void Reset()
+        private void Reset()
         {
             answerInvalid = false;
             playing = false;
@@ -113,7 +113,7 @@ namespace QuietKid_TheGame
             }
             CheckEnd();
         }
-        public void BasicChoices()
+        private void BasicChoices()
         {
             Console.WriteLine("\n>>> What will you do tonight? <<<");
             Console.WriteLine("T - Train" +
@@ -139,9 +139,9 @@ namespace QuietKid_TheGame
                 }
             } while (answerInvalid);
         }
-        public void LifeChangingChoices()
+        private void LifeChangingChoices()
         {
-            Console.WriteLine("\n! Today you decide to do something different. Something life-changing. !");
+            Console.WriteLine("\n !Today you decide to do something different. Something life-changing...!");
             Console.WriteLine("\n>>> What shall it be? <<<");
             Console.WriteLine("B - Do something with your body" +
                 "\nC - Do something with your coding skills" +
@@ -166,8 +166,6 @@ namespace QuietKid_TheGame
                         Rage(); answerInvalid = false;
                         break;
                     case "x":
-                    case "go back":
-                    case "ordinary":
                         BasicChoices(); answerInvalid = false;
                         break;
                     default:
@@ -176,42 +174,72 @@ namespace QuietKid_TheGame
                 }
             } while (answerInvalid);
         }
-        public void Body()
+        private void Body()
         {
+            Console.WriteLine("\n");
+            Console.WriteLine("\n>>> What action will you take? <<<");
+            Console.WriteLine("" +
+                "\n" +
+                "\n" +
+                "\nX - Go back");
             do
             {
+                Console.Write("\nMake your choice: ");
                 switch (Console.ReadLine().ToLower())
                 {
-                    default: LifeChangingChoices(); answerInvalid = false;
+                    case "x": LifeChangingChoices(); answerInvalid = false;
+                        break;
+                    default:
+                        Console.WriteLine("There's no choice like that."); answerInvalid = true;
                         break;
                 }
             } while (answerInvalid);
         }
-        public void CodeSkills()
+        private void CodeSkills()
         {
+            Console.WriteLine("\n");
+            Console.WriteLine("\n>>> What action will you take? <<<");
+            Console.WriteLine("" +
+                "\n" +
+                "\n" +
+                "\nX - Go back");
             do
             {
+                Console.Write("\nMake your choice: ");
                 switch (Console.ReadLine().ToLower())
                 {
-                    default:
+                    case "x":
                         LifeChangingChoices(); answerInvalid = false;
                         break;
-                }
-            } while (answerInvalid);
-        }
-        public void Rage()
-        {
-            do
-            {
-                switch (Console.ReadLine().ToLower())
-                {
                     default:
-                        LifeChangingChoices(); answerInvalid = false;
+                        Console.WriteLine("There's no choice like that."); answerInvalid = true;
                         break;
                 }
             } while (answerInvalid);
         }
-        public void CheckEnd()
+        private void Rage()
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine("\n>>> What action will you take? <<<");
+            Console.WriteLine("" +
+                "\n" +
+                "\n" +
+                "\nX - Go back");
+            do
+            {
+                Console.Write("\nMake your choice: ");
+                switch (Console.ReadLine().ToLower())
+                {
+                    case "x":
+                        LifeChangingChoices(); answerInvalid = false;
+                        break;
+                    default:
+                        Console.WriteLine("There's no choice like that."); answerInvalid = true;
+                        break;
+                }
+            } while (answerInvalid);
+        }
+        private void CheckEnd()
         {
             if (day == 31)
             {
@@ -222,7 +250,7 @@ namespace QuietKid_TheGame
                 ++day;
             }
         }
-        public void Ending(int whichending)
+        private void Ending(int whichending)
         {
             Console.WriteLine("\n\t!!!Congratulations, you've reached an ending!!!\n" +
                     $"\t---\n{"\t" + endings[whichending]}\n\t---");
@@ -235,7 +263,7 @@ namespace QuietKid_TheGame
             Reset();
             ToPlayOrNotToPlay();
         }
-        public void EasterEgg()
+        private void EasterEgg()
         {
             if (emil.Physique == 5 && emil.Coding == 5 && emil.BloodLust == 5)
             {
